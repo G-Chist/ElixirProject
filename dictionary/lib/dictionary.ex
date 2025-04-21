@@ -1,5 +1,5 @@
-defmodule Dictionary do
-  def hello do
+defmodule Dictionary do  # All modules declared like defmodule <Name> end
+  def hello do  # Functions declared like def <Name> do end
     IO.puts "Hello world!!"
   end
   def word_list do
