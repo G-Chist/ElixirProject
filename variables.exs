@@ -10,3 +10,10 @@ IO.puts example_bool == example_atom
 IO.puts List.first list_example  # Standard list method
 IO.puts List.last list_example  # Standard list method
 IO.puts elem(tuple_example, 0)  # Indices start with 0
+
+# When counting the elements in a data structure, Elixir also abides by a simple rule:
+#   the function is named size if the operation is in constant time
+#     (i.e. the value is pre-calculated)
+#   or length if the operation is linear
+#     (i.e. calculating the length gets slower as the input grows).
+# As a mnemonic, both “length” and “linear” start with “l”.
