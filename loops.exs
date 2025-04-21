@@ -85,3 +85,13 @@ end)
 # Fruit: cherry
 
 # --------------------------------------------------------------------
+
+# Define a tuple of numbers
+numbers = {1, 2, 3, 4}
+
+# Convert to list and double each value using a `for` comprehension
+doubled = for n <- Tuple.to_list(numbers), do: n * 2
+
+IO.inspect(doubled)  # Output: [2, 4, 6, 8]
+
+# --------------------------------------------------------------------
