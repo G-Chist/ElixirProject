@@ -69,3 +69,19 @@ end)
 # Fruit: cherry
 
 # --------------------------------------------------------------------
+
+# Define a tuple with three elements.
+my_tuple = {:apple, :banana, :cherry}
+
+# Convert the tuple to a list using `Tuple.to_list/1`.
+# Then use Enum.each to iterate through the list.
+Enum.each(Tuple.to_list(my_tuple), fn fruit ->
+  IO.puts("Fruit: #{fruit}")
+end)
+
+# Output:
+# Fruit: apple
+# Fruit: banana
+# Fruit: cherry
+
+# --------------------------------------------------------------------
