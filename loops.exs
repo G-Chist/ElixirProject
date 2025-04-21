@@ -95,3 +95,17 @@ doubled = for n <- Tuple.to_list(numbers), do: n * 2
 IO.inspect(doubled)  # Output: [2, 4, 6, 8]
 
 # --------------------------------------------------------------------
+
+# Define a tuple with some elements
+my_tuple = {:dog, :cat, :bird}
+
+# Get the size of the tuple using `tuple_size/1`
+tuple_len = tuple_size(my_tuple)
+
+# Use a `for` loop over a range of indices from 0 to tuple_len - 1
+for i <- 0..(tuple_len - 1) do
+  # Access each element using `elem/2`, which takes the tuple and an index
+  IO.puts("Element at index #{i}: #{elem(my_tuple, i)}")
+end
+
+# --------------------------------------------------------------------
