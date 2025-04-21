@@ -4,6 +4,12 @@ defmodule Dictionary do
   end
   def word_list do
     contents = File.read!("assets/words.txt")
-    list     = String.split(contents, ~r/\n/)  # Split by new line
+    words    = String.split(contents, ~r/\n/)  # Split by new line, ~r for regex
+
+    firstWord = List.first words
+    lastWord  = List.last words
+
+    IO.puts firstWord
+    IO.puts lastWord
   end
 end
