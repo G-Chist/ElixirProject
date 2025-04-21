@@ -48,3 +48,24 @@ Looper.print_list([10, 20, 30])
 
 
 # --------------------------------------------------------------------
+
+# Define a list of strings, each representing a fruit.
+fruits = ["apple", "banana", "cherry"]
+
+# Use `Enum.each/2` to iterate over each item in the `fruits` list.
+# `Enum.each` takes two arguments:
+#   1. The list to iterate over
+#   2. An anonymous function (`fn fruit -> ... end`) that is executed for each element.
+Enum.each(fruits, fn fruit ->
+  # Inside the anonymous function:
+  # `fruit` is bound to the current item in the list.
+  # We use `IO.puts` to print a string that includes the current fruit.
+  IO.puts("Fruit: #{fruit}")
+end)
+
+# Expected Output:
+# Fruit: apple
+# Fruit: banana
+# Fruit: cherry
+
+# --------------------------------------------------------------------
