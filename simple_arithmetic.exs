@@ -8,3 +8,4 @@ IO.puts rem 200, 15  # Same as line 6
 IO.puts round(200/15)
 IO.puts :math.sin(0)  # Sine of 0 radians
 IO.puts :math.cos(:math.pi())
+IO.puts -0xcafe  # Hex example
