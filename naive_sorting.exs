@@ -10,7 +10,7 @@ tuple_len = tuple_size(my_tuple)
 # Sort
 for i <- 0..(tuple_len - 1) do
   for j <- i..(tuple_len - 1) do
-    if elem(my_tuple, i) < elem(my_tuple, i+1) do
+    if elem(my_tuple, j) < elem(my_tuple, j+1) do
 
       # This does not work! Tuple elements are IMMUTABLE
       buffer = elem(my_tuple, j)
