@@ -4,7 +4,7 @@ example_bool = true
 example_atom = :true  # An atom's value is its own name (:true is also an atom)
 list_example = [1,2,3,4,5]  # Stored in memory as a linked list
 tuple_example = {1, 2, 3, 4, 5}  # Stored in memory as an array
-IO.puts gravity
+IO.puts "Gravity value: #{gravity}"
 IO.puts example_string
 IO.puts example_bool == example_atom
 IO.puts List.first list_example  # Standard list method
