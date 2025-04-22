@@ -1,4 +1,6 @@
-add2 = fn (n) -> n + 2 end
+add2 = fn (n) -> n + 2 end  # this is an anonymous function
+# Use fn ... -> ... end to define
+# Use the dot notation .() to call it
 IO.puts add2.(2)
 
 defmodule ArithmeticFunctions do  # functions must be inside a module
