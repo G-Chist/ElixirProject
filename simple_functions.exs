@@ -46,6 +46,10 @@ mps_to_kmh = fn (mps) -> mps * 3.6 end
 
 # Now let's do this in a module:
 defmodule Drop do
+  @moduledoc """
+  Functions calculating velocities achieved by objects dropped in a vacuum
+  """
+  @vsn 0.1  # Specify version
   @doc """
   Calculates the velocity of an object falling on a planet with a given gravity (9.8 by default)
   """
