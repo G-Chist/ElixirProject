@@ -34,3 +34,8 @@ end
 IO.puts ArithmeticFunctions.add_2(2)
 IO.puts ArithmeticFunctions.add_and_multiply_pipe(1, 2, 3)
 IO.puts ArithmeticFunctions.add_and_multiply(1, 2, 3)
+
+# Another anonymous function
+fall_velocity = fn (distance) -> :math.sqrt(2*9.8*distance) end
+
+IO.puts fall_velocity.(200)
