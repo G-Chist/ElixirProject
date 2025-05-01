@@ -1,7 +1,7 @@
 add2 = fn (n) -> n + 2 end  # this is an anonymous function
 # Use fn ... -> ... end to define
 # Use the dot notation .() to call it
-IO.puts add2.(2)
+# IO.puts add2.(2)
 
 defmodule ArithmeticFunctions do  # functions must be inside a module
 
@@ -31,9 +31,9 @@ defmodule ArithmeticFunctions do  # functions must be inside a module
 
 end
 
-IO.puts ArithmeticFunctions.add_2(2)
-IO.puts ArithmeticFunctions.add_and_multiply_pipe(1, 2, 3)
-IO.puts ArithmeticFunctions.add_and_multiply(1, 2, 3)
+# IO.puts ArithmeticFunctions.add_2(2)
+# IO.puts ArithmeticFunctions.add_and_multiply_pipe(1, 2, 3)
+# IO.puts ArithmeticFunctions.add_and_multiply(1, 2, 3)
 
 # Some other anonymous functions
 fall_velocity = fn (distance) -> :math.sqrt(2*9.8*distance) end
@@ -41,5 +41,15 @@ fall_velocity = fn (distance) -> :math.sqrt(2*9.8*distance) end
 # fall_velocity = &(:math.sqrt(2 * 9.8 * &1))
 mps_to_kmh = fn (mps) -> mps * 3.6 end
 
-IO.puts fall_velocity.(200)
-IO.puts mps_to_kmh.(fall_velocity.(200))
+# IO.puts fall_velocity.(200)
+# IO.puts mps_to_kmh.(fall_velocity.(200))
+
+# Now let's do this in a module:
+defmodule Drop do
+  import :math, only: [sqrt: 1]  # Import from the :math module, but ONLY function sqrt with an arity (# of arguments) of 1
+  def fall_velocity(distance) do
+    sqrt(2*9.8*distance)
+  end
+end
+
+IO.puts Drop.fall_velocity(200)
