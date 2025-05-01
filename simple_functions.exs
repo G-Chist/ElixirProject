@@ -46,10 +46,14 @@ mps_to_kmh = fn (mps) -> mps * 3.6 end
 
 # Now let's do this in a module:
 defmodule Drop do
+  @doc """
+  Calculates the velocity of an object falling on a planet with a given gravity (9.8 by default)
+  """
   import :math, only: [sqrt: 1]  # Import from the :math module, but ONLY function sqrt with an arity (# of arguments) of 1
-  def fall_velocity(distance) do
-    sqrt(2*9.8*distance)
+  def fall_velocity(distance, gravity \\ 9.8) do  # \\ allows us to set an argument's default value
+    sqrt(2*gravity*distance)
   end
 end
 
 IO.puts Drop.fall_velocity(200)
+IO.puts Drop.fall_velocity(200, 9)  # Slightly lower gravity
