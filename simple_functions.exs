@@ -50,6 +50,7 @@ defmodule Drop do
   Calculates the velocity of an object falling on a planet with a given gravity (9.8 by default)
   """
   import :math, only: [sqrt: 1]  # Import from the :math module, but ONLY function sqrt with an arity (# of arguments) of 1
+  @spec fall_velocity(number()) :: float()  # Specify that the input is any number, the output is a float
   def fall_velocity(distance, gravity \\ 9.8) do  # \\ allows us to set an argument's default value
     sqrt(2*gravity*distance)
   end
