@@ -35,7 +35,11 @@ IO.puts ArithmeticFunctions.add_2(2)
 IO.puts ArithmeticFunctions.add_and_multiply_pipe(1, 2, 3)
 IO.puts ArithmeticFunctions.add_and_multiply(1, 2, 3)
 
-# Another anonymous function
+# Some other anonymous functions
 fall_velocity = fn (distance) -> :math.sqrt(2*9.8*distance) end
+# & is the capture operator in Elixir. We can rewrite fall_velocity as follows:
+# fall_velocity = &(:math.sqrt(2 * 9.8 * &1))
+mps_to_kmh = fn (mps) -> mps * 3.6 end
 
 IO.puts fall_velocity.(200)
+IO.puts mps_to_kmh.(fall_velocity.(200))
