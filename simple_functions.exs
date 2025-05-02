@@ -60,5 +60,9 @@ defmodule Drop do
   end
 end
 
-IO.puts Drop.fall_velocity(200)
-IO.puts Drop.fall_velocity(200, 9)  # Slightly lower gravity
+# IO.puts Drop.fall_velocity(200)
+# IO.puts Drop.fall_velocity(200, 9)  # Slightly lower gravity
+
+fun=&Drop.fall_velocity/1  # get function from the module and turn it into a free-floating function (specify arity!)
+
+IO.puts(fun.(20))
