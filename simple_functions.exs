@@ -15,7 +15,7 @@ defmodule ArithmeticFunctions do  # functions must be inside a module
 
   # Using the pipe operator
   def add_and_multiply_pipe(n, x, y) do
-    # we need to have some initial value to go into the pipe
+    # we need to have some initial value to go into the pipe (read |> as 'goes into')
     n
     # passes the value of n as an argument, so it's add(n, x); |> + x won't work
     |> add(x)
