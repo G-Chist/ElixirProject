@@ -53,16 +53,34 @@ defmodule Drop do
   @doc """
   Calculates the velocity of an object falling on a planet with a given gravity (9.8 by default)
   """
-  import :math, only: [sqrt: 1]  # Import from the :math module, but ONLY function sqrt with an arity (# of arguments) of 1
-  @spec fall_velocity(number()) :: float()  # Specify that the input is any number, the output is a float
-  def fall_velocity(distance, gravity \\ 9.8) do  # \\ allows us to set an argument's default value
-    sqrt(2*gravity*distance)
+  # import :math, only: [sqrt: 1]  # Import from the :math module, but ONLY function sqrt with an arity (# of arguments) of 1
+  # @spec fall_velocity(number()) :: float()  # Specify that the input is any number, the output is a float
+  # def fall_velocity(distance, gravity \\ 9.8) do  # \\ allows us to set an argument's default value
+  #   sqrt(2*gravity*distance)
+  # end
+
+  # It looks like the fall_velocity function gets defined three times here, and it cer‐
+  # tainly provides three processing paths for the same function. However, because Elixir
+  # will choose which version of the function to call by pattern matching, they aren’t
+  # duplicate definitions. As in English, these pieces are called clauses. All of the clauses
+  # for a given function name must be grouped together in the module.
+
+  def fall_velocity(:earth, distance) do
+    :math.sqrt(2 * 9.8 * distance)  # :earth is an atom; its name is its own value
+  end
+
+    def fall_velocity(:moon, distance) do
+    :math.sqrt(2 * 1.6 * distance)
+  end
+
+    def fall_velocity(:mars, distance) do
+    :math.sqrt(2 * 3.71 * distance)
   end
 end
 
 # IO.puts Drop.fall_velocity(200)
 # IO.puts Drop.fall_velocity(200, 9)  # Slightly lower gravity
 
-fun=&Drop.fall_velocity/1  # get function from the module and turn it into a free-floating function (specify arity!)
+fun=&Drop.fall_velocity/2  # get function from the module and turn it into a free-floating function (specify arity!)
 
-IO.puts(fun.(20))
+IO.puts(fun.(:mars, 20))
