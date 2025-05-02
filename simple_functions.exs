@@ -65,15 +65,16 @@ defmodule Drop do
   # duplicate definitions. As in English, these pieces are called clauses. All of the clauses
   # for a given function name must be grouped together in the module.
 
-  def fall_velocity(:earth, distance) do
+  # Encapsulating the args into a tuple changes arity to 1
+  def fall_velocity({:earth, distance}) when distance >= 0 do  # adding guard
     :math.sqrt(2 * 9.8 * distance)  # :earth is an atom; its name is its own value
   end
 
-    def fall_velocity(:moon, distance) do
+    def fall_velocity({:moon, distance}) when distance >= 0 do  # adding guard
     :math.sqrt(2 * 1.6 * distance)
   end
 
-    def fall_velocity(:mars, distance) do
+    def fall_velocity({:mars, distance}) when distance >= 0 do  # adding guard
     :math.sqrt(2 * 3.71 * distance)
   end
 end
@@ -81,6 +82,6 @@ end
 # IO.puts Drop.fall_velocity(200)
 # IO.puts Drop.fall_velocity(200, 9)  # Slightly lower gravity
 
-fun=&Drop.fall_velocity/2  # get function from the module and turn it into a free-floating function (specify arity!)
+fun=&Drop.fall_velocity/1  # get function from the module and turn it into a free-floating function (specify arity!)
 
-IO.puts(fun.(:mars, 20))
+IO.puts(fun.({:mars, 20}))
