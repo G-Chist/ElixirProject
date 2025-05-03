@@ -34,3 +34,30 @@ defmodule Solution do
     is_mirror.(is_mirror, root, root)
   end
 end
+
+# --- Example usage ---
+
+defmodule Example do
+  # Construct a symmetric binary tree:
+  #       1
+  #      / \
+  #     2   2
+  #    / \ / \
+  #   3  4 4  3
+
+  tree = %TreeNode{
+    val: 1,
+    left: %TreeNode{
+      val: 2,
+      left: %TreeNode{val: 3},
+      right: %TreeNode{val: 4}
+    },
+    right: %TreeNode{
+      val: 2,
+      left: %TreeNode{val: 4},
+      right: %TreeNode{val: 3}
+    }
+  }
+
+  IO.puts(Solution.is_symmetric(tree))  # Output: true
+end
