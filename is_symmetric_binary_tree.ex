@@ -45,7 +45,7 @@ defmodule Example do
   #    / \ / \
   #   3  4 4  3
 
-  tree = %TreeNode{
+  tree_symmetric = %TreeNode{
     val: 1,
     left: %TreeNode{
       val: 2,
@@ -59,5 +59,20 @@ defmodule Example do
     }
   }
 
-  IO.puts(Solution.is_symmetric(tree))  # Output: true
+  tree_asymmetric = %TreeNode{
+    val: 1,
+    left: %TreeNode{
+      val: 2,
+      left: %TreeNode{val: 3},
+      right: %TreeNode{val: 3}
+    },
+    right: %TreeNode{
+      val: 2,
+      left: %TreeNode{val: 4},
+      right: %TreeNode{val: 3}
+    }
+  }
+
+  IO.puts(Solution.is_symmetric(tree_symmetric))  # Output: true
+  IO.puts(Solution.is_symmetric(tree_asymmetric))  # Output: false
 end
