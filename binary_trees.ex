@@ -39,11 +39,23 @@ defmodule TreeMethods do
       inorder_traversal(left) ++ [val] ++ inorder_traversal(right)
   end
 
+  @spec preorder_traversal(root :: TreeNode.t() | nil) :: [integer]  # returns nothing OR a list of integers
+  def preorder_traversal(nil), do: []
+  def preorder_traversal(%TreeNode{val: val, left: left, right: right}) do
+      [val] ++ preorder_traversal(left) ++ preorder_traversal(right)
+  end
+
+  @spec postorder_traversal(root :: TreeNode.t() | nil) :: [integer]  # returns nothing OR a list of integers
+  def postorder_traversal(nil), do: []
+  def postorder_traversal(%TreeNode{val: val, left: left, right: right}) do
+      postorder_traversal(left) ++ postorder_traversal(right) ++ [val]
+  end
+
   @spec is_bst(root :: TreeNode.t() | nil) :: boolean
   def is_bst(root), do: is_bst_helper(root, nil, nil)
 
   # Helper function with optional min and max bounds
-  defp is_bst_helper(nil, _min, _max), do: true
+  defp is_bst_helper(nil, _min, _max), do: true  # Empty node is a BST
 
   defp is_bst_helper(%TreeNode{val: val, left: left, right: right}, min, max) do
     cond do
@@ -198,17 +210,19 @@ defmodule Example do
 
 
   # TreeMethods.inorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 3 4 5 6 7 8
-  IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
-  IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
-  IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
-  IO.puts(TreeMethods.bst_min(tree_bst_one_node))  # Output: 5
-  IO.puts(TreeMethods.bst_min(nil))  # Output: nil (shows as empty line)
-  IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
-  IO.puts(TreeMethods.is_symmetric(tree_bst_one_node))  # Output: true
-  IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
-  IO.puts(TreeMethods.is_bst(tree_bst))  # Output: true
-  IO.puts(TreeMethods.is_bst(tree_asymmetric))  # Output: false
-  IO.puts(TreeMethods.is_bst(tree_bst_one_node))  # Output: true
-  IO.puts(TreeMethods.is_bst(tree_bst_2))  # Output: true
-  IO.puts(TreeMethods.is_bst(invalid_bst))  # Output: false
+  # TreeMethods.preorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 5 3 2 4 7 6 8
+  TreeMethods.postorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 4 3 6 8 7 5
+  # IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
+  # IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
+  # IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
+  # IO.puts(TreeMethods.bst_min(tree_bst_one_node))  # Output: 5
+  # IO.puts(TreeMethods.bst_min(nil))  # Output: nil (shows as empty line)
+  # IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
+  # IO.puts(TreeMethods.is_symmetric(tree_bst_one_node))  # Output: true
+  # IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
+  # IO.puts(TreeMethods.is_bst(tree_bst))  # Output: true
+  # IO.puts(TreeMethods.is_bst(tree_asymmetric))  # Output: false
+  # IO.puts(TreeMethods.is_bst(tree_bst_one_node))  # Output: true
+  # IO.puts(TreeMethods.is_bst(tree_bst_2))  # Output: true
+  # IO.puts(TreeMethods.is_bst(invalid_bst))  # Output: false
 end
