@@ -43,6 +43,14 @@ defmodule TreeMethods do
     end
   end
 
+  def bst_max(root) do
+    if root.right != nil do
+      bst_max(root.right)
+    else
+      root.val
+    end
+  end
+
 end
 
 # --- Example usage ---
@@ -112,7 +120,20 @@ defmodule Example do
     }
   }
 
-  TreeMethods.inorder_traversal(tree_bst)
+  # Construct a binary search tree:
+  #       5
+  #      / \
+  #     _   _
+  #
+  #
+
+  tree_bst_one_node = %TreeNode{
+    val: 5
+  }
+
+  # TreeMethods.inorder_traversal(tree_bst)  # Output: 2 3 4 5 6 7 8
+  IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
+  IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
