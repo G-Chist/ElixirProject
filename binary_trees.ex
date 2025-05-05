@@ -91,7 +91,28 @@ defmodule Example do
     }
   }
 
-  TreeMethods.inorder_traversal(tree_symmetric)
+  # Construct a binary search tree:
+  #       5
+  #      / \
+  #     3   7
+  #    / \ / \
+  #   2  4 6  8
+
+  tree_bst = %TreeNode{
+    val: 5,
+    left: %TreeNode{
+      val: 3,
+      left: %TreeNode{val: 2},
+      right: %TreeNode{val: 4}
+    },
+    right: %TreeNode{
+      val: 7,
+      left: %TreeNode{val: 6},
+      right: %TreeNode{val: 8}
+    }
+  }
+
+  TreeMethods.inorder_traversal(tree_bst)
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
