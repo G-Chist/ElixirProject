@@ -12,6 +12,7 @@ end
 # From LeetCode
 
 defmodule TreeMethods do
+
   @spec is_symmetric(root :: TreeNode.t() | nil) :: boolean
   def is_symmetric(root) do
     is_mirror = fn is_mirror, tree1, tree2 ->
@@ -33,6 +34,15 @@ defmodule TreeMethods do
 
     is_mirror.(is_mirror, root, root)
   end
+
+  def inorder_traversal(root) do
+    if root != nil do
+      inorder_traversal(root.left)
+      IO.puts root.val
+      inorder_traversal(root.right)
+    end
+  end
+
 end
 
 # --- Example usage ---
@@ -73,6 +83,7 @@ defmodule Example do
     }
   }
 
+  TreeMethods.inorder_traversal(tree_symmetric)
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
