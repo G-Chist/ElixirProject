@@ -39,7 +39,8 @@ defmodule TreeMethods do
       inorder_traversal(left) ++ [val] ++ inorder_traversal(right)
   end
 
-  @spec bst_max(root :: TreeNode.t()) :: integer  # tree is non-empty, return integer
+  @spec bst_max(root :: TreeNode.t() | nil) :: integer | nil
+  def bst_max(nil), do: nil
   def bst_max(root) do
     if root.right != nil do
       bst_max(root.right)
@@ -49,6 +50,7 @@ defmodule TreeMethods do
   end
 
   @spec bst_min(root :: TreeNode.t()) :: integer  # tree is non-empty, return integer
+  def bst_min(nil), do: nil
   def bst_min(root) do
     if root.left != nil do
       bst_min(root.left)
