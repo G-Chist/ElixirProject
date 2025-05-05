@@ -55,6 +55,7 @@ defmodule TreeMethods do
   def is_bst(root), do: is_bst_helper(root, nil, nil)
 
   # Helper function with optional min and max bounds
+  # defp is a way to declare a private function, one that cannot be accessed outside the module it's in
   defp is_bst_helper(nil, _min, _max), do: true  # Empty node is a BST
 
   defp is_bst_helper(%TreeNode{val: val, left: left, right: right}, min, max) do
