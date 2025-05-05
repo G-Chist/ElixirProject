@@ -11,7 +11,7 @@ end
 
 # From LeetCode
 
-defmodule Solution do
+defmodule TreeMethods do
   @spec is_symmetric(root :: TreeNode.t() | nil) :: boolean
   def is_symmetric(root) do
     is_mirror = fn is_mirror, tree1, tree2 ->
@@ -73,6 +73,6 @@ defmodule Example do
     }
   }
 
-  IO.puts(Solution.is_symmetric(tree_symmetric))  # Output: true
-  IO.puts(Solution.is_symmetric(tree_asymmetric))  # Output: false
+  IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
+  IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
