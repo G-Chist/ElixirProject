@@ -144,6 +144,8 @@ defmodule Example do
   IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
   IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
   IO.puts(TreeMethods.bst_min(tree_bst_one_node))  # Output: 5
+  IO.puts(TreeMethods.bst_min(nil))  # Output: nil (shows as empty line)
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
+  IO.puts(TreeMethods.is_symmetric(tree_bst_one_node))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
