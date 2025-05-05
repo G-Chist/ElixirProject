@@ -51,6 +51,14 @@ defmodule TreeMethods do
     end
   end
 
+  def bst_min(root) do
+    if root.left != nil do
+      bst_min(root.left)
+    else
+      root.val
+    end
+  end
+
 end
 
 # --- Example usage ---
@@ -133,7 +141,9 @@ defmodule Example do
 
   # TreeMethods.inorder_traversal(tree_bst)  # Output: 2 3 4 5 6 7 8
   IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
+  IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
   IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
+  IO.puts(TreeMethods.bst_min(tree_bst_one_node))  # Output: 5
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
 end
