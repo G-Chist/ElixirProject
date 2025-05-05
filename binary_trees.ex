@@ -9,8 +9,6 @@ defmodule TreeNode do
   defstruct val: 0, left: nil, right: nil
 end
 
-# From LeetCode
-
 defmodule TreeMethods do
 
   @spec is_symmetric(root :: TreeNode.t() | nil) :: boolean
@@ -35,14 +33,13 @@ defmodule TreeMethods do
     is_mirror.(is_mirror, root, root)
   end
 
-  def inorder_traversal(root) do
-    if root != nil do
-      inorder_traversal(root.left)
-      IO.puts root.val
-      inorder_traversal(root.right)
-    end
+  @spec inorder_traversal(root :: TreeNode.t() | nil) :: [integer]  # returns nothing OR a list of integers
+  def inorder_traversal(nil), do: []
+    def inorder_traversal(%TreeNode{val: val, left: left, right: right}) do
+      inorder_traversal(left) ++ [val] ++ inorder_traversal(right)
   end
 
+  @spec bst_max(root :: TreeNode.t()) :: integer  # tree is non-empty, return integer
   def bst_max(root) do
     if root.right != nil do
       bst_max(root.right)
@@ -51,6 +48,7 @@ defmodule TreeMethods do
     end
   end
 
+  @spec bst_min(root :: TreeNode.t()) :: integer  # tree is non-empty, return integer
   def bst_min(root) do
     if root.left != nil do
       bst_min(root.left)
@@ -139,7 +137,7 @@ defmodule Example do
     val: 5
   }
 
-  # TreeMethods.inorder_traversal(tree_bst)  # Output: 2 3 4 5 6 7 8
+  # TreeMethods.inorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 3 4 5 6 7 8
   IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
   IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
   IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
