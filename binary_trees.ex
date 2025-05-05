@@ -48,6 +48,7 @@ end
 # --- Example usage ---
 
 defmodule Example do
+
   # Construct a symmetric binary tree:
   #       1
   #      / \
@@ -68,6 +69,13 @@ defmodule Example do
       right: %TreeNode{val: 3}
     }
   }
+
+  # Construct an asymmetric binary tree:
+  #       1
+  #      / \
+  #     2   2
+  #    / \ / \
+  #   3  3 4  3
 
   tree_asymmetric = %TreeNode{
     val: 1,
