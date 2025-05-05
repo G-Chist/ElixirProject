@@ -35,9 +35,30 @@ defmodule TreeMethods do
 
   @spec inorder_traversal(root :: TreeNode.t() | nil) :: [integer]  # returns nothing OR a list of integers
   def inorder_traversal(nil), do: []
-    def inorder_traversal(%TreeNode{val: val, left: left, right: right}) do
+  def inorder_traversal(%TreeNode{val: val, left: left, right: right}) do
       inorder_traversal(left) ++ [val] ++ inorder_traversal(right)
   end
+
+  @spec is_bst(root :: TreeNode.t() | nil) :: boolean
+  def is_bst(root), do: is_bst_helper(root, nil, nil)
+
+  # Helper function with optional min and max bounds
+  defp is_bst_helper(nil, _min, _max), do: true
+
+  defp is_bst_helper(%TreeNode{val: val, left: left, right: right}, min, max) do
+    cond do
+      (min != nil and val <= min) ->
+        false
+
+      (max != nil and val >= max) ->
+        false
+
+      true ->
+        is_bst_helper(left, min, val) and
+        is_bst_helper(right, val, max)
+    end
+  end
+
 
   @spec bst_max(root :: TreeNode.t() | nil) :: integer | nil
   def bst_max(nil), do: nil
@@ -139,6 +160,43 @@ defmodule Example do
     val: 5
   }
 
+  # Construct a binary search tree:
+  #       5
+  #      / \
+  #     3   7
+  #    / \ / \
+  #   _  4 6  8
+
+  tree_bst_2 = %TreeNode{
+    val: 5,
+    left: %TreeNode{
+      val: 3,
+      right: %TreeNode{val: 4}
+    },
+    right: %TreeNode{
+      val: 7,
+      left: %TreeNode{val: 6},
+      right: %TreeNode{val: 8}
+    }
+  }
+
+  # Invalid BST:
+  #     10
+  #    /  \
+  #   5    15
+  #       /
+  #      6   <- invalid (should be > 10)
+
+  invalid_bst = %TreeNode{
+    val: 10,
+    left: %TreeNode{val: 5},
+    right: %TreeNode{
+      val: 15,
+      left: %TreeNode{val: 6}
+    }
+  }
+
+
   # TreeMethods.inorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 3 4 5 6 7 8
   IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
   IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
@@ -148,4 +206,9 @@ defmodule Example do
   IO.puts(TreeMethods.is_symmetric(tree_symmetric))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_bst_one_node))  # Output: true
   IO.puts(TreeMethods.is_symmetric(tree_asymmetric))  # Output: false
+  IO.puts(TreeMethods.is_bst(tree_bst))  # Output: true
+  IO.puts(TreeMethods.is_bst(tree_asymmetric))  # Output: false
+  IO.puts(TreeMethods.is_bst(tree_bst_one_node))  # Output: true
+  IO.puts(TreeMethods.is_bst(tree_bst_2))  # Output: true
+  IO.puts(TreeMethods.is_bst(invalid_bst))  # Output: false
 end
