@@ -60,6 +60,31 @@ defmodule TreeMethods do
     end
   end
 
+  @spec node_level(root :: TreeNode.t() | nil, to_find :: integer) :: integer | nil
+  def node_level(root, to_find), do: node_level_helper(root, to_find, 0)
+
+  # Private helper that carries the current level during traversal
+  defp node_level_helper(nil, _to_find, _level), do: nil
+
+  defp node_level_helper(%TreeNode{val: val, left: left, right: right}, to_find, level) do
+    cond do
+      val == to_find ->
+        level  # Found the node, return its level
+
+      true ->
+        # Search in left subtree
+        left_result = node_level_helper(left, to_find, level + 1)
+
+        # If found on the left, return it; else search right subtree
+        if left_result != nil do
+          left_result
+        else
+          node_level_helper(right, to_find, level + 1)
+        end
+    end
+  end
+
+
   # Finds the mode(s) in a binary tree (i.e., the most frequently occurring value(s))
   @spec find_tree_mode(root :: TreeNode.t() | nil) :: [integer] | nil  # returns nil for empty tree, or a list of integers
   def find_tree_mode(nil), do: nil  # base case: if the tree is empty, return nil
@@ -261,6 +286,7 @@ defmodule Example do
   # TreeMethods.preorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 5 3 2 4 7 6 8
   # TreeMethods.postorder_traversal(tree_bst_2) |> Enum.each(&IO.puts/1)  # Output: 4 3 6 8 7 5
   # TreeMethods.find_tree_mode(tree_asymmetric) |> Enum.each(&IO.puts/1)  # Output: 3
+  # IO.puts(TreeMethods.node_level(invalid_bst, 6))  # Output: 2
   # IO.puts(TreeMethods.has_negative_values(invalid_bst_negative))  # Output: true
   # IO.puts(TreeMethods.has_negative_values(invalid_bst))  # Output: false
   # IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
