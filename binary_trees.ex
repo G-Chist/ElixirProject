@@ -51,6 +51,8 @@ defmodule TreeMethods do
       postorder_traversal(left) ++ postorder_traversal(right) ++ [val]
   end
 
+  # TODO: Level-by-level traversal
+
   @spec is_bst(root :: TreeNode.t() | nil) :: boolean
   def is_bst(root), do: is_bst_helper(root, nil, nil)
 
