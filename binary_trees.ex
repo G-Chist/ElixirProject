@@ -70,8 +70,7 @@ defmodule TreeMethods do
   end
 
 
-  @spec level_by_level(root :: TreeNode.t() | nil) :: [] | nil
-  def level_by_level(nil), do: nil  # base case: if the tree is empty, return nil
+  # TODO: Add level-by-level traversal
 
 
   @spec is_bst(root :: TreeNode.t() | nil) :: boolean
@@ -236,7 +235,8 @@ defmodule Example do
   # TreeMethods.inorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 3 4 5 6 7 8
   # TreeMethods.preorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 5 3 2 4 7 6 8
   # TreeMethods.postorder_traversal(tree_bst_2) |> Enum.each(&IO.puts/1)  # Output: 4 3 6 8 7 5
-  TreeMethods.find_tree_mode(tree_asymmetric) |> Enum.each(&IO.puts/1)  # Output: 3
+  # TreeMethods.find_tree_mode(tree_asymmetric) |> Enum.each(&IO.puts/1)  # Output: 3
+  TreeMethods.level_by_level(tree_asymmetric) |> Enum.each(&IO.puts/1)
   # IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
   # IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
   # IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
