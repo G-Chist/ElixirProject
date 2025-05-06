@@ -51,6 +51,20 @@ defmodule TreeMethods do
       postorder_traversal(left) ++ postorder_traversal(right) ++ [val]
   end
 
+  # Mode = most frequently appearing element
+  @spec find_tree_mode(root :: TreeNode.t() | nil) :: [integer] | nil  # returns nothing OR an integer list
+  def find_tree_mode(nil), do: nil
+
+  def find_tree_mode(%TreeNode{val: val, left: left, right: right}) do
+    postorder_traversal(left) ++ postorder_traversal(right) ++ [val] |> mode
+  end
+
+  defp mode(list) do
+    gb = Enum.group_by(list, &(&1))
+    max = Enum.map(gb, fn {_,val} -> length(val) end) |> Enum.max
+    for {key,val} <- gb, length(val)==max, do: key
+  end
+
   # TODO: Level-by-level traversal
 
   @spec is_bst(root :: TreeNode.t() | nil) :: boolean
@@ -214,7 +228,8 @@ defmodule Example do
 
   # TreeMethods.inorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 3 4 5 6 7 8
   # TreeMethods.preorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 5 3 2 4 7 6 8
-  TreeMethods.postorder_traversal(tree_bst) |> Enum.each(&IO.puts/1)  # Output: 2 4 3 6 8 7 5
+  # TreeMethods.postorder_traversal(tree_bst_2) |> Enum.each(&IO.puts/1)  # Output: 4 3 6 8 7 5
+  TreeMethods.find_tree_mode(tree_asymmetric) |> Enum.each(&IO.puts/1)  # Output: 3
   # IO.puts(TreeMethods.bst_max(tree_bst))  # Output: 8
   # IO.puts(TreeMethods.bst_min(tree_bst))  # Output: 2
   # IO.puts(TreeMethods.bst_max(tree_bst_one_node))  # Output: 5
