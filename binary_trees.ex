@@ -51,19 +51,23 @@ defmodule TreeMethods do
       postorder_traversal(left) ++ postorder_traversal(right) ++ [val]
   end
 
-  # Mode = most frequently appearing element
-  @spec find_tree_mode(root :: TreeNode.t() | nil) :: [integer] | nil  # returns nothing OR an integer list
-  def find_tree_mode(nil), do: nil
+  # Finds the mode(s) in a binary tree (i.e., the most frequently occurring value(s))
+  @spec find_tree_mode(root :: TreeNode.t() | nil) :: [integer] | nil  # returns nil for empty tree, or a list of integers
+  def find_tree_mode(nil), do: nil  # base case: if the tree is empty, return nil
 
   def find_tree_mode(%TreeNode{val: val, left: left, right: right}) do
-    postorder_traversal(left) ++ postorder_traversal(right) ++ [val] |> mode
+    # Collect all values in postorder (left, right, root), then find the mode(s)
+    postorder_traversal(left) ++ postorder_traversal(right) ++ [val]
+    |> mode
   end
 
+  # Helper function: returns a list of the most frequent element(s) in the list
   defp mode(list) do
-    gb = Enum.group_by(list, &(&1))
-    max = Enum.map(gb, fn {_,val} -> length(val) end) |> Enum.max
-    for {key,val} <- gb, length(val)==max, do: key
+    gb = Enum.group_by(list, &(&1))  # group all values by the value itself
+    max = Enum.map(gb, fn {_, val} -> length(val) end) |> Enum.max  # find the highest frequency
+    for {key, val} <- gb, length(val) == max, do: key  # return all keys with that max frequency
   end
+
 
   # TODO: Level-by-level traversal
 
