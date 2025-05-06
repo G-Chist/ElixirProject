@@ -62,6 +62,7 @@ defmodule TreeMethods do
   end
 
   # Helper function: returns a list of the most frequent element(s) in the list
+  # defp is a way to declare a private function, one that cannot be accessed outside the module it's in
   defp mode(list) do
     gb = Enum.group_by(list, &(&1))  # group all values by the value itself
     max = Enum.map(gb, fn {_, val} -> length(val) end) |> Enum.max  # find the highest frequency
@@ -69,7 +70,9 @@ defmodule TreeMethods do
   end
 
 
-  # TODO: Level-by-level traversal
+  @spec level_by_level(root :: TreeNode.t() | nil) :: [] | nil
+  def level_by_level(nil), do: nil  # base case: if the tree is empty, return nil
+
 
   @spec is_bst(root :: TreeNode.t() | nil) :: boolean
   def is_bst(root), do: is_bst_helper(root, nil, nil)
