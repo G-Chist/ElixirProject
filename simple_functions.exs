@@ -10,6 +10,21 @@ defmodule ArithmeticFunctions do  # functions must be inside a module
     n + 2
   end
 
+  def countup(limit) do
+    countup(1, limit)
+  end
+
+  defp countup(count, limit) when count <= limit do
+    IO.inspect(count)
+    countup(count+1, limit)
+  end
+
+  # use underscore to avoid "unused variable" warnings
+  defp countup(_count, _limit) do
+    IO.puts("finished!")
+  end
+
+
   def add(n, x), do: n + x
   def multiply(n, y), do: n * y
 
@@ -85,3 +100,5 @@ end
 fun=&Drop.fall_velocity/1  # get function from the module and turn it into a free-floating function (specify arity!)
 
 IO.puts(fun.({:mars, 20}))
+
+ArithmeticFunctions.countup(5)
