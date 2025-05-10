@@ -44,6 +44,16 @@ defmodule ArithmeticFunctions do  # functions must be inside a module
     (n + x) * y
   end
 
+  def factorial(n) when n > 1 do
+    n * factorial(n - 1)
+  end
+
+  def factorial(n) when n <= 1 do
+    1
+  end
+
+
+
 end
 
 # IO.puts ArithmeticFunctions.add_2(2)
@@ -99,6 +109,7 @@ end
 
 fun=&Drop.fall_velocity/1  # get function from the module and turn it into a free-floating function (specify arity!)
 
-IO.puts(fun.({:mars, 20}))
+# IO.puts(fun.({:mars, 20}))
 
-ArithmeticFunctions.countup(5)
+# ArithmeticFunctions.countup(5)
+IO.puts(ArithmeticFunctions.factorial(6))
